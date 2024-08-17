@@ -1,0 +1,19 @@
+{
+  "name": "ui-preset",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/preset/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ui/preset",
+        "main": "libs/ui/preset/src/index.ts",
+        "tsConfig": "libs/ui/preset/tsconfig.lib.json",
+        "assets": ["libs/ui/preset/*.md"]
+      }
+    }
+  }
+}

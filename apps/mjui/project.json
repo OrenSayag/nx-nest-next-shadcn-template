@@ -1,57 +1,60 @@
 {
   "name": "mjui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/mjui/src",
+  "sourceRoot": "apps/mjui",
   "projectType": "application",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/esbuild:esbuild",
+      "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "platform": "node",
-        "outputPath": "dist/apps/mjui",
-        "format": ["cjs"],
-        "bundle": false,
-        "main": "apps/mjui/src/main.ts",
-        "tsConfig": "apps/mjui/tsconfig.app.json",
-        "assets": ["apps/mjui/src/assets"],
-        "generatePackageJson": true,
-        "esbuildOptions": {
-          "sourcemap": true,
-          "outExtension": {
-            ".js": ".js"
-          }
-        }
-      },
-      "configurations": {
-        "development": {},
-        "production": {
-          "esbuildOptions": {
-            "sourcemap": false,
-            "outExtension": {
-              ".js": ".js"
-            }
-          }
-        }
-      }
-    },
-    "serve": {
-      "executor": "@nx/js:node",
-      "defaultConfiguration": "development",
-      "dependsOn": ["build"],
-      "options": {
-        "buildTarget": "mjui:build",
-        "runBuildTargetDependencies": false
+        "outputPath": "dist/apps/mjui"
       },
       "configurations": {
         "development": {
-          "buildTarget": "mjui:build:development"
+          "outputPath": "apps/mjui"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "mjui:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mjui:build:development",
+          "dev": true
         },
         "production": {
-          "buildTarget": "mjui:build:production"
+          "buildTarget": "mjui:build:production",
+          "dev": false
         }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "mjui:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/mjui/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/mjui/**/*.{ts,tsx,js,jsx}"]
       }
     }
   }

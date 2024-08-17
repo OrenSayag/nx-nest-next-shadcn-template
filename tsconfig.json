@@ -1,0 +1,14 @@
+{
+  "compileOnSave": false,
+  "extends": ["tsconfig.base.json"],
+  "compilerOptions": {
+    "rootDir": ".",
+    "baseUrl": ".",
+  },
+  "exclude": ["node_modules", "tmp"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
+}

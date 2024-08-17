@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@mjui/ui/components": ["libs/ui/components/src/index.ts"],
+      "@mjui/ui/utils": ["libs/ui/utils/src/index.ts"],
+      "@mjui/ui/preset": ["libs/ui/preset/src/global.css"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
