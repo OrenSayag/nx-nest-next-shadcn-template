@@ -1,1 +1,1 @@
-mjui - prompt ai for pictures
+nx workspace with nextjs and nestjs and shadcn
